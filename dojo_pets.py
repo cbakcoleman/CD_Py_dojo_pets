@@ -19,25 +19,27 @@ class Pet:
 
     def play(self):
         self.health += 5
+        return self
 
-    def noise(self, type):
-        if type == "dog":
+    def noise(self):
+        if self.type == "dog":
             print('Mung Mong')
-        elif type =="cat":
+        elif self.type =="cat":
             print('Ya Ong')
-        elif type =="duck":
+        elif self.type =="duck":
             print("Ggwek Ggwek")
+        return self
 
 pet1 = Pet("Charlie", "dog", "sit", 25, 50)
 pet2 = Pet("Garfield", "cat", "purr", 15, 10)
 pet3 = Pet("Huey", "duck", "waddle", 10, 15)
 
 # add Human class, associate class Pet
-class Human:
+class Human():
     def __init__(self, first_name, last_name, pet, treats, pet_food):
         self.first_name = first_name
         self.last_name = last_name
-        self.pet = Pet()
+        self.pet = pet
         self.treats = treats
         self.pet_food = pet_food
 
@@ -47,10 +49,25 @@ class Human:
 
     def feed(self):
         self.pet.eat()
+        return self
 
     def bathe(self):
         self.pet.noise()
+        return self
 
 human1 = Human("Charles", "Gunn", pet1, "beggin strips", "alpo")
 human2 = Human("Cordelia", "Chase", pet2, "bonito flakes", "meowmix")
 human3 = Human("Fred", "Burkle", pet3, "grapes", "greens")
+
+# have Humans interact with Pets
+print(human1.pet.type, human1.pet.health, human1.pet.energy)
+human1.walk().feed().bathe()
+print(human1.pet.health, human1.pet.energy)
+
+print(human2.pet.type, human2.pet.health, human2.pet.energy)
+human2.walk().feed().bathe()
+print(human2.pet.health, human2.pet.energy)
+
+print(human3.pet.type, human3.pet.health, human3.pet.energy)
+human3.walk().feed().bathe()
+print(human3.pet.health, human3.pet.energy)
